@@ -1,6 +1,6 @@
 package lista.simples;
 
-public class Lista {
+public class ListaSimples {
     private Nodo inicio, fim;
 
     public void inserirComeco(String nomeNodo) {
