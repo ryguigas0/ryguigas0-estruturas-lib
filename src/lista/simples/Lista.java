@@ -1,3 +1,5 @@
+package lista.simples;
+
 public class Lista {
     private Nodo inicio, fim;
 
@@ -32,10 +34,10 @@ public class Lista {
         return fim;
     }
 
-    public void printarLista() {
+    @Override
+    public String toString() {
         if (inicio == null) {
-            System.out.println("Lista vazia!");
-            return;
+            return "Lista vazia!";
         }
 
         Nodo nodo = inicio;
@@ -43,11 +45,11 @@ public class Lista {
         String output = "";
 
         do {
-            output += String.format("%d - %s\n", counter, nodo.nome);
+            output += String.format("%d - %s\n", counter, nodo);
             counter++;
             nodo = nodo.proximo;
         } while (nodo != null);
 
-        System.out.println(output);
+        return output;
     }
 }

@@ -1,3 +1,5 @@
+package lista.simples;
+
 public class Nodo {
     String nome;
     Nodo proximo;
@@ -8,6 +10,11 @@ public class Nodo {
         n.proximo = proximoNodo;
 
         return n;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("nome: %s", nome);
     }
 
     public String nomeNodo() {
