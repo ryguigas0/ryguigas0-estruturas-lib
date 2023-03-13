@@ -16,4 +16,12 @@ public class NodoGenerico<T> {
     public T getDado() {
         return this.dado;
     }
+
+    public NodoGenerico<T> getDireita() {
+        return this.dir;
+    }
+
+    public NodoGenerico<T> getEsquerda() {
+        return this.esq;
+    }
 }
