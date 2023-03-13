@@ -12,4 +12,8 @@ public class NodoGenerico<T> {
     public String toString() {
         return dado.toString();
     }
+
+    public T getDado() {
+        return this.dado;
+    }
 }
