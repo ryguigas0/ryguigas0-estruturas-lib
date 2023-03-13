@@ -4,7 +4,7 @@ public class ListaDuplaGenerica<T> {
     private NodoGenerico<T> inicio, fim;
     private int tamanho = 0;
 
-    void inserirInicio(T dado) {
+    public void inserirInicio(T dado) {
         NodoGenerico<T> novoNodo = new NodoGenerico<T>(dado);
         if (inicio == null && fim == null) {
             inicio = novoNodo;
@@ -19,7 +19,7 @@ public class ListaDuplaGenerica<T> {
         tamanho++;
     }
 
-    void inserirFim(T dado) {
+    public void inserirFim(T dado) {
         NodoGenerico<T> novoNodo = new NodoGenerico<T>(dado);
         if (inicio == null && fim == null) {
             inicio = novoNodo;
@@ -34,7 +34,7 @@ public class ListaDuplaGenerica<T> {
         tamanho++;
     }
 
-    NodoGenerico<T> pesquisar(T busca) {
+    public NodoGenerico<T> pesquisar(T busca) {
         NodoGenerico<T> curr = inicio;
 
         while (curr != null) {
@@ -47,7 +47,7 @@ public class ListaDuplaGenerica<T> {
         return null;
     }
 
-    void deletar(T busca) {
+    public void deletar(T busca) {
         NodoGenerico<T> nodoParaDeletar = pesquisar(busca);
 
         if (nodoParaDeletar == null) {
