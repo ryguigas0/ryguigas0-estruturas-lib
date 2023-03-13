@@ -83,7 +83,7 @@ public class ListaDuplaGenerica<T> {
             // nodoDepois.esq = nodoAnterior;
 
             nodoParaDeletar.esq.dir = nodoParaDeletar.dir;
-            
+
             nodoParaDeletar.dir.esq = nodoParaDeletar.esq;
         }
 
@@ -105,19 +105,23 @@ public class ListaDuplaGenerica<T> {
 
     @Override
     public String toString() {
-        String dadosString = "[\n";
+        String dadosString = "[";
         NodoGenerico<T> curr = inicio;
 
         while (curr != null) {
-            dadosString += String.format("\t\t%s,\n", curr);
+            String formatString = "%s, ";
+            if (this.fim.equals(curr)) {
+                formatString = "%s";
+            }
+
+            dadosString += String.format(formatString, curr);
 
             curr = curr.dir;
         }
 
-        dadosString += "\t]";
+        dadosString += "]";
 
-        String output = String.format("{\n\tinicio: %s,\n\tfim: %s, \n\ttamanho: %d, \n\tdados: %s\n}",
-                inicio, fim, tamanho, dadosString);
+        String output = dadosString;
 
         return output;
     }
