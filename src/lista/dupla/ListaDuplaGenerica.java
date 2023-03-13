@@ -1,6 +1,6 @@
 package lista.dupla;
 
-public class ListaGenerica<T> {
+public class ListaDuplaGenerica<T> {
     private NodoGenerico<T> inicio, fim;
     private int tamanho = 0;
 
