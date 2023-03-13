@@ -47,11 +47,11 @@ public class ListaDuplaGenerica<T> {
         return null;
     }
 
-    public void deletar(T busca) {
+    public boolean deletar(T busca) {
         NodoGenerico<T> nodoParaDeletar = pesquisar(busca);
 
         if (nodoParaDeletar == null) {
-            return;
+            return false;
         }
 
         if (tamanho == 1) {
@@ -89,6 +89,7 @@ public class ListaDuplaGenerica<T> {
 
         nodoParaDeletar = null;
         tamanho--;
+        return true;
     }
 
     public NodoGenerico<T> getInicio() {
