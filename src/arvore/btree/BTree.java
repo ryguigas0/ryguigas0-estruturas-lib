@@ -1,4 +1,4 @@
-package arvore;
+package arvore.btree;
 
 public class BTree<T extends Comparable<T>> {
     private Nodo<T> raiz;
@@ -76,14 +76,53 @@ public class BTree<T extends Comparable<T>> {
             return false;
         }
 
-        if (nodo.getDado().compareTo(dado) == 0) {
-            return true;
+        return nodo.getDado().compareTo(dado) == 0 ||
+                presente(nodo.getDir(), dado) ||
+                presente(nodo.getEsq(), dado);
+    }
+
+    public void remover(T dado) {
+        remover(raiz, dado);
+    }
+
+    private Nodo<T> remover(Nodo<T> raiz, T dado) {
+        if (raiz == null) {
+            return null;
         }
 
-        if (presente(nodo.getEsq(), dado)) {
-            return true;
+        if (dado.compareTo(raiz.getDado()) < 0) {
+            raiz.setEsq(remover(raiz.getEsq(), dado));
+        } else if (dado.compareTo(raiz.getDado()) > 0) {
+            raiz.setDir(remover(raiz.getDir(), dado));
+        } else {
+            // O nó a ser removido tem 0 ou 1 filho
+            if (raiz.getEsq() == null) {
+                return raiz.getDir();
+            } else if (raiz.getDir() == null) {
+                return raiz.getEsq();
+            }
+
+            // O nó a ser removido tem 2 filhos
+            Nodo<T> sucessor = getSucessor(raiz.getDir());
+            raiz.setDado(sucessor.getDado());
+            raiz.setDir(removerSucessor(raiz.getDir()));
         }
 
-        return presente(nodo.getDir(), dado);
+        return raiz;
+    }
+
+    private Nodo<T> getSucessor(Nodo<T> nodo) {
+        if (nodo.getEsq() == null) {
+            return nodo;
+        }
+        return getSucessor(nodo.getEsq());
+    }
+
+    private Nodo<T> removerSucessor(Nodo<T> nodo) {
+        if (nodo.getEsq() == null) {
+            return nodo.getDir();
+        }
+        nodo.setEsq(removerSucessor(nodo.getEsq()));
+        return nodo;
     }
 }

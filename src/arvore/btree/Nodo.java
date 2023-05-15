@@ -1,4 +1,4 @@
-package arvore;
+package arvore.btree;
 
 public class Nodo<T extends Comparable<T>> {
     private T dado;
