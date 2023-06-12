@@ -234,4 +234,8 @@ public class AVLTree<T extends Comparable<T>> {
         return nodo;
     }
 
+    public Nodo<T> getRaiz() {
+        return raiz;
+    }
+
 }
