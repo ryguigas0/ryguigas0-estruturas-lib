@@ -16,6 +16,32 @@ public class BTree<T extends Comparable<T>> {
         }
     }
 
+    public int contarFolhas() {
+        if (raiz == null) {
+            return 0;
+        }
+
+        return contarFolhas(this.raiz);
+    }
+
+    private int contarFolhas(Nodo<T> nodo) {
+        int output = 0;
+
+        if (nodo.getEsq() == null && nodo.getDir() == null) {
+            return 1;
+        }
+
+        if (nodo.getEsq() != null) {
+            output += contarFolhas(nodo.getEsq());
+        }
+
+        if (nodo.getDir() != null) {
+            output += contarFolhas(nodo.getDir());
+        }
+
+        return output;
+    }
+
     public String toStringPreOrdem() {
         return toStringPreOrdem(this.raiz);
     }
@@ -124,5 +150,25 @@ public class BTree<T extends Comparable<T>> {
         }
         nodo.setEsq(removerSucessor(nodo.getEsq()));
         return nodo;
+    }
+
+    public boolean verificar(BTree<T> outra) {
+        return verificar(this.raiz, outra.raiz);
+    }
+
+    private boolean verificar(Nodo<T> nodoA, Nodo<T> nodoB) {
+        if ((nodoA == null && nodoB != null) || (nodoB == null && nodoA != null)) {
+            return false;
+        }
+
+        if (nodoA != null && nodoB != null) {
+            return nodoA.getDado().equals(nodoB.getDado()) &&
+                    verificar(nodoA.getDir(), nodoB.getDir()) &&
+                    verificar(nodoA.getEsq(), nodoB.getEsq());
+        } else if ((nodoA == null && nodoB != null) || (nodoB == null && nodoA != null)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
